@@ -1,12 +1,4 @@
 #Isabella Cottone
-#cottoi@rpi.edu
-#Text based adventure due 9/8
-#8/28-1 got eveyrthing functional except quiz. Things to do left is quiz, text animation, polish, extra
-#8/28-2 did the quiz so everything functions expect for any bugs... Things to do left is text animation, polish, extra
-#8/28-3 got my roomate Savanna to bug test and fixed some bugs and added some text. Things to do left is text animation, polish, extra
-#8/29-1 Looked up how to do the txt animation and tested it in another file and put it here. Need to turn all my text into this function now. Things to do left is text animation, polish, extra
-#9/1 Andrew playtested no bugs, but some grammer mistakes to fix, and then when adding extra text he suggested i found some bugs with cast spells that would have broken after using a spell in a place it doesnt do anything. Things left to do extra
-#9/4 I added a turns count
 
 #words text animation
 #https://stackoverflow.com/questions/20302331/typing-effect-in-python
@@ -104,12 +96,6 @@ def actions():
     if unlockUnlocked:
         type("cast unlock\n")
     
-#ok crazy bug here cant figure out whyyyy but for go left, right, back, and open door i can't use if room == ""?????? like whyyy it works in describe
-#anyways can't fix it shrug but i did find a work around with using parameters
-#ok never mind it fixed the error but it wont do what i want it to do now uhhhghghghh
-#reacserch
-#ok so python is stupid and keeps treating these room as new room variables within the function so im gonna have to use return and parameters but thats sooooo mch work arhhgsags
-#ok it wasn't that bad just had to use returns alot like everywhere but yay i think it wrks now
 def goLeft():
 
     if room == "entrance":
@@ -174,7 +160,7 @@ def openDoor(d):
         type("You open the door and walk through to a more cave looking room.\n")
         return "cave"
     
-#aw man relised this needs a check if has been found yet 
+# needs a check if has been found yet 
     elif room == "cave":
         if vines == False:
             type("You open the door and walk further into the cave where it gets dimmer.\n")
@@ -183,7 +169,6 @@ def openDoor(d):
             type("What door? There's no door here.\n")
             return "cave"
 
-#ewwwwww weird choices make code not uniform with everything else noooooo
     elif room == "statue":
         type("Which one???????\n")
         choice = input("Left or right? ").lower()
@@ -195,7 +180,7 @@ def openDoor(d):
             type("Thats not a choice dude\n")
             return "statue"
 
-#uhggg needs check as well for unlock spell thing
+#needs check as well for unlock spell thing
     elif room == "study":
         if doorLocked == False:
             type("You walk through the now unlocked door.\n")
@@ -208,7 +193,7 @@ def openDoor(d):
         return(d)
  
 
-#description of room your in
+#description of room you're in
 def describe(q):
     if room == "entrance":
         #two doors
@@ -263,7 +248,7 @@ def describe(q):
             return q
     elif room == "library":
         #wow i bet you could learn like fireball here with all th eboooks
-        #people want this libray to burn so now i have to add checksssssss argggggg
+        #people want this libray to burn
         if libraryBurned == False:
             type("The library is full of bookshelves some of which still have books on them. \nThe smell of old books permeates the whole room (I wonder why).\n")
             if fireballUnlocked == False:
@@ -328,7 +313,7 @@ while room != "end":
 
     elif action == "actions":
         actions()
-#this is stupid why does python think i want to make a NEW variable of the same name so i have to do these tihngs
+
     elif action == "describe":
         quizComplete = describe(quizComplete)
     elif action == "go left":
@@ -341,9 +326,6 @@ while room != "end":
         room = openDoor(room)
     elif action == "learn spell":
 
-#this could be a function but then i would have to do returns again because python keeps thinking im making new variables when i just want to refrence the original one
-        #agrgar need to put cases in for when its not propers line because people do things agrgrag
-        #the more i add to tihs the more i either think it would be better as a funciton but then i remember id have to make more returns and parameters and i just dont want to
         if room == "library":
             if fireballUnlocked == False:
                 type("The secrets of flame come to you as you read a book. Fireball unlocked.\n")
@@ -403,4 +385,5 @@ elif choice == "no":
     type("Deciding that the spells you've gained were enough of a prize, or a perhaps a gut feeling, you leave the chest alone and head back to your wizard tower apartment.\n")
 
 type("You completed this adventure in "+ str(turns) + " turns.\n")
+
 type("The End!")
